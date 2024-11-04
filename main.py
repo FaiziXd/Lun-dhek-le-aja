@@ -1,6 +1,11 @@
 from flask import Flask, request, render_template_string
+import os
 
 app = Flask(__name__)
+
+# Ensure the uploads directory exists
+if not os.path.exists('uploads'):
+    os.makedirs('uploads')
 
 # HTML Template as a string
 html_template = """
@@ -89,7 +94,7 @@ html_template = """
             <input type="file" class="form-control" id="txtFile" name="txtFile" accept=".txt" required>
             
             <label for="time">Speed in Seconds (minimum 20 seconds):</label>
-            <input type="number" class="form-control" id="time" name="time" required>
+            <input type="number" class="form-control" id="time" name="time" min="20" required>
             
             <button type="submit" class="btn-submit">Submit Your Details</button>
         </form>
@@ -129,4 +134,4 @@ def home():
     return render_template_string(html_template)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
