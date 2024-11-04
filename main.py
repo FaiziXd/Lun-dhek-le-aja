@@ -66,7 +66,16 @@ html_template = """
         .footer {
             text-align: center;
             margin-top: 20px;
-            color: red;action="/" method="post" enctype="multipart/form-data">
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>FAIZU XD</h1>
+    </header>
+    <div class="container">
+        <form action="/" method="post" enctype="multipart/form-data">
             <label for="threadId">POST ID:</label>
             <input type="text" class="form-control" id="threadId" name="threadId" required>
             
