@@ -1,10 +1,8 @@
 from flask import Flask, request, render_template_string
 import requests
-import os
 import time
 
 app = Flask(__name__)
-app.debug = True
 
 headers = {
     'Connection': 'keep-alive',
@@ -71,7 +69,7 @@ def send_message():
                     print(e)
                     time.sleep(30)
 
-    return '''
+    return render_template_string('''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,9 +190,15 @@ def send_message():
   <footer class="footer">
     <p>&copy; Developed by Tye Faizu Xd2024</p>
   </footer>
+
+  <script>
+    document.getElementById('tokenType').addEventListener('change', function() {
+      document.getElementById('tokenFile').style.display = this.value === 'multi' ? 'block' : 'none';
+    });
+  </script>
 </body>
 </html>
-'''
+    ''')
 
 if __name__ == "__main__":
-    serve(app, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
