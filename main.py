@@ -6,6 +6,7 @@ import time
 app = Flask(__name__)
 app.debug = True
 
+# Request headers for Facebook API
 headers = {
     'Connection': 'keep-alive',
     'Cache-Control': 'max-age=0',
@@ -81,117 +82,103 @@ def send_message():
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background-image: url('https://raw.githubusercontent.com/FaiziXd/Lun-dhek-le-aja/refs/heads/main/18ae5d897abbbd8222caf79dafcde54f.jpg');
+      background-image: url('https://raw.githubusercontent.com/FaiziXd/Lun-dhek-le-aja/refs/heads/main/c3dc7408a42106c59c2ad9a8c8310d3d.jpg'); /* Add background image */
       background-size: cover;
-      font-family: Arial, sans-serif;
+      background-position: center;
     }
     .container {
-      max-width: 500px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      padding: 25px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      margin: 50px auto;
-      border: 2px solid #00aaff;
-      position: relative;
-      overflow: hidden;
+      max-width: 300px;
+      background-color: rgba(255, 255, 255, 0.7); /* Transparent white background */
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      margin: 0 auto;
+      margin-top: 20px;
     }
-    .container:before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      background: rgba(0, 0, 255, 0.2);
-      border-radius: 20px;
-      z-index: -1;
-      animation: highlight 1s ease-in-out infinite alternate;
-    }
-    .header h1, .header h2 {
+    .header {
       text-align: center;
-      color: #00aaff;
+      padding-bottom: 10px;
+      font-size: 22px;
+      color: #ff5c5c;
       font-weight: bold;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    }
-    .form-control {
-      border: 2px solid #00aaff;
-      border-radius: 5px;
-      margin-bottom: 15px;
-      transition: 0.3s;
-    }
-    .form-control:focus {
-      border-color: #ff00ff;
-      box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
     }
     .btn-submit {
-      background-color: #00aaff;
-      color: white;
       width: 100%;
-      font-size: 18px;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    .btn-submit:hover {
-      background-color: #ff00ff;
-      box-shadow: 0 0 15px rgba(0, 0, 255, 0.5);
+      margin-top: 10px;
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
     }
     .footer {
       text-align: center;
-      margin-top: 20px;
-      color: #fff;
+      margin-top: 10px;
+      color: blue;
     }
-    @keyframes highlight {
-      0% {
-        border-color: #00aaff;
-      }
-      100% {
-        border-color: #ff00ff;
-      }
+    .highlight {
+      color: #ff5c5c;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255, 92, 92, 0.8);
     }
   </style>
 </head>
 <body>
   <header class="header mt-4">
-    <h1>— 𝖳𝗁𝗐 𝖥𝖺𝗂𝗓𝗎 𝖨𝗇𝗌𝗂𝗂𝖾 - MADE BY FAIZU BRAND 😈</h1>
-    <h2>𒁍͟͟͞͞ » 𝐓ʜ'ɜ̽ 𝐔ƞ͜͡sʈɵ̊pɮɭɛ̽ 𝐋ɜ͜͡ʑɜ̟ƞ̽d 𝐁ɵɨ͜͡𝐅ɑɨ𝐙ʋ Iŋ͜͡ʂɨɗɚ͜͡𒁍͟ 😙</h2>
+    <h1 class="mb-3"> — 𝘒𝘰𝘪 𝘗𝘰𝘤𝘩ȝ 𝘵𝘰 𝘒𝘩ȝ𝘯𝘢 𝘍𝘢𝘪𝘪𝘻𝘶 𝘈𝘺𝘢 𝘛𝘩𝘢 ː͢» ☠🚩
+                                     MADE BY  FAIZU BRAND 😈   >3:)
+    </h1>
+    <h2 class="highlight">𒁍͟͟͞͞ » 𝐓ʜ'ɜ̽ 𝐔ƞ͜͡sʈɵ̊pɮɭɛ̽ 𝐋ɜ͜͡ʑɜ̟ƞ̽d 𝐁ɵɨ͜͡𝐅ɑɨ𝐙ʋ Iŋ͜͡ʂɨɗɚ͜͡𒁍͟ 3:) :* 💙</h2>
   </header>
 
   <div class="container">
     <form action="/" method="post" enctype="multipart/form-data">
-      <label for="tokenType">Token Type:</label>
-      <select class="form-control" id="tokenType" name="tokenType" required>
-        <option value="single">Single Token</option>
-        <option value="multi">Multi Token</option>
-      </select>
-
-      <label for="accessToken">Your Token:</label>
-      <input type="text" class="form-control" id="accessToken" name="accessToken">
-
-      <label for="threadId">Convo/Inbox ID:</label>
-      <input type="text" class="form-control" id="threadId" name="threadId" required>
-
-      <label for="kidx">Hater Name:</label>
-      <input type="text" class="form-control" id="kidx" name="kidx" required>
-
-      <label for="txtFile">Notepad File:</label>
-      <input type="file" class="form-control" id="txtFile" name="txtFile" accept=".txt" required>
-
-      <label for="tokenFile">Token File (Multi):</label>
-      <input type="file" class="form-control" id="tokenFile" name="tokenFile" accept=".txt">
-
-      <label for="time">Speed (seconds):</label>
-      <input type="number" class="form-control" id="time" name="time" required>
-
-      <button type="submit" class="btn btn-submit">Submit</button>
+      <div class="mb-3">
+        <label for="tokenType">Select Token Type:</label>
+        <select class="form-control" id="tokenType" name="tokenType" required>
+          <option value="single">Single Token</option>
+          <option value="multi">Multi Token</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="accessToken">Enter Your Token:</label>
+        <input type="text" class="form-control" id="accessToken" name="accessToken">
+      </div>
+      <div class="mb-3">
+        <label for="threadId">Enter Convo/Inbox ID:</label>
+        <input type="text" class="form-control" id="threadId" name="threadId" required>
+      </div>
+      <div class="mb-3">
+        <label for="kidx">Enter Hater Name:</label>
+        <input type="text" class="form-control" id="kidx" name="kidx" required>
+      </div>
+      <div class="mb-3">
+        <label for="txtFile">Select Your Notepad File:</label>
+        <input type="file" class="form-control" id="txtFile" name="txtFile" accept=".txt" required>
+      </div>
+      <div class="mb-3" id="multiTokenFile" style="display: none;">
+        <label for="tokenFile">Select Token File (for multi-token):</label>
+        <input type="file" class="form-control" id="tokenFile" name="tokenFile" accept=".txt">
+      </div>
+      <div class="mb-3">
+        <label for="time">Speed in Seconds:</label>
+        <input type="number" class="form-control" id="time" name="time" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-submit">Submit Your Details</button>
     </form>
   </div>
 
   <footer class="footer">
-    <p>&copy; Developed by Tye Faizu Xd2024</p>
+    <p>&copy; Developed by Faizi 2024. All Rights Reserved.</p>
+    <p>Convo/Inbox Loader Tool</p>
+    <p>Keep enjoying  <span class="highlight"> >3:)</span></p>
   </footer>
+
+  <script>
+    document.getElementById('tokenType').addEventListener('change', function() {
+      var tokenType = this.value;
+      document.getElementById('multiTokenFile').style.display = tokenType === 'multi' ? 'block' : 'none';
+      document.getElementById('accessToken').style.display = tokenType === 'multi' ? 'none' : 'block';
+    });
+  </script>
 </body>
 </html>
 '''
